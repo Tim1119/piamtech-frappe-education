@@ -1,0 +1,33 @@
+{
+  "doctype": "DocType",
+  "name": "Overall Performance Grade",
+  "module": "Piamtech Frappe Education",
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "grade",
+      "label": "Grade Symbol",
+      "fieldtype": "Data",
+      "placeholder": "e.g., Distinction, Pass",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "min_score",
+      "label": "Min Avg Score",
+      "fieldtype": "Float",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "max_score",
+      "label": "Max Avg Score",
+      "fieldtype": "Float",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "remark",
+      "label": "Principal Remark",
+      "fieldtype": "Small Text",
+      "in_list_view": 1
+    }
+  ]
+}

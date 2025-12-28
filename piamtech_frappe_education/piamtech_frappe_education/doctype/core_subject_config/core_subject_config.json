@@ -1,0 +1,22 @@
+{
+  "doctype": "DocType",
+  "name": "Core Subject Config",
+  "module": "Piamtech Frappe Education",
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "subject",
+      "label": "Subject",
+      "fieldtype": "Link",
+      "options": "Course",
+      "in_list_view": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "minimum_pass_score",
+      "label": "Min Pass Score",
+      "fieldtype": "Int",
+      "description": "Overrides general passing score for this subject"
+    }
+  ]
+}

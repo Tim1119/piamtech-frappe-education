@@ -251,8 +251,19 @@ fixtures = [
     {
         "doctype": "Custom Field",
         "filters": {
-            "module": "Piamtech Frappe Education",
-            "dt": "Student"
+            "module": "Piamtech Frappe Education"
         }
+    },
+    {
+        "doctype": "Translation",
+        "filters": [
+            ["language", "=", "en"]
+        ]
     }
 ]
+
+doc_events = {
+    "Assessment Plan": {
+        "before_save": "piamtech_frappe_education.api.sync_assessment_plan_with_policy"
+    }
+}

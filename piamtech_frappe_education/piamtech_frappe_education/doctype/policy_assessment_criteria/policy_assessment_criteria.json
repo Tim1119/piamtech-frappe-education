@@ -1,0 +1,24 @@
+{
+  "doctype": "DocType",
+  "name": "Policy Assessment Criteria",
+  "module": "Piamtech Frappe Education",
+  "istable": 1,
+  "fields": [
+    {
+      "fieldname": "assessment_criteria",
+      "label": "Assessment Criteria",
+      "fieldtype": "Link",
+      "options": "Assessment Criteria",
+      "in_list_view": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "weightage",
+      "label": "Weightage (%)",
+      "fieldtype": "Percent",
+      "in_list_view": 1,
+      "reqd": 1,
+      "description": "How much this counts towards the final 100%"
+    }
+  ]
+}

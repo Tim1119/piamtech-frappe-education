@@ -1,0 +1,17 @@
+{
+  "doctype": "DocType",
+  "name": "Policy Student Group Link",
+  "module": "Piamtech Frappe Education",
+  "istable": 1,
+  "editable_grid": 1,
+  "fields": [
+    {
+      "fieldname": "student_group",
+      "label": "Student Group",
+      "fieldtype": "Link",
+      "options": "Student Group",
+      "in_list_view": 1,
+      "reqd": 1
+    }
+  ]
+}
