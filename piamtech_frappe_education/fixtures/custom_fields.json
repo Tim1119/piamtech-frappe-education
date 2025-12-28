@@ -1,0 +1,28 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Student-religion",
+    "dt": "Student",
+    "fieldname": "religion",
+    "label": "Religion",
+    "fieldtype": "Select",
+    "options": "Christian\nMuslim\nAfrican Traditional\nOthers",
+    "insert_after": "date_of_birth",
+    "module": "Piamtech Frappe Education",
+    "reqd": 0,
+    "default": ""
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Student-state_of_origin",
+    "dt": "Student",
+    "fieldname": "state_of_origin",
+    "label": "State of Origin",
+    "fieldtype": "Select",
+    "options": "Abia\nAdamawa\nAkwa Ibom\nAnambra\nBauchi\nBayelsa\nBenue\nBorno\nCross River\nDelta\nEbonyi\nEdo\nEkiti\nEnugu\nFCT\nGombe\nImo\nJigawa\nKaduna\nKano\nKatsina\nKebbi\nKogi\nKwara\nLagos\nNasarawa\nNiger\nOgun\nOndo\nOsun\nOyo\nPlateau\nRivers\nSokoto\nTaraba\nYobe\nZamfara",
+    "insert_after": "nationality",
+    "module": "Piamtech Frappe Education",
+    "reqd": 0,
+    "default": ""
+  }
+]

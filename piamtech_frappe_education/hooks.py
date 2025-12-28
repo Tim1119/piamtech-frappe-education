@@ -247,11 +247,12 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
-
 fixtures = [
-    {"dt": "Custom Field", "filters": [["name", "in", [
-        "Student-state_of_origin",
-        "Student-religion"
-    ]]]}
+    {
+        "doctype": "Custom Field",
+        "filters": {
+            "module": "Piamtech Frappe Education",
+            "dt": "Student"
+        }
+    }
 ]
-
