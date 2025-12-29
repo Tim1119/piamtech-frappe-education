@@ -1,0 +1,475 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:RSLT-({student})-{academic_year}-{academic_term}-{####}",
+ "creation": "2025-12-29 11:53:33.453469",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_student_information_section",
+  "student",
+  "assessment_group",
+  "student_group",
+  "student_admission_id",
+  "term_start_date",
+  "date_of_result_issue",
+  "column_break_yoxw",
+  "academic_term",
+  "academic_year",
+  "gender",
+  "term_end_date",
+  "program",
+  "basic_class_information_section",
+  "number_of_students_in_class",
+  "column_break_jhoi",
+  "number_of_students_in_class_group",
+  "attendance_information_section",
+  "number_of_times_school_opened",
+  "number_of_times_present",
+  "column_break_lqmp",
+  "number_of_times_absent",
+  "attendance_percentage",
+  "section_break_hfoj",
+  "subjects",
+  "result_components_breakdown_section",
+  "assessment_components",
+  "section_break_fnzx",
+  "total_marks_obtained",
+  "overall_grade",
+  "class_position",
+  "column_break_wwze",
+  "total_max_marks",
+  "term_average",
+  "class_arm_position",
+  "administrative__notes_section",
+  "column_break_jkeb",
+  "comments__notes",
+  "class_teacher_comment",
+  "head_teacher_comment",
+  "section_break_mkpx",
+  "handwriting",
+  "games",
+  "handling_tools",
+  "musical_skills",
+  "column_break_pflb",
+  "verbal_fluency",
+  "sport",
+  "drawing_and_painting",
+  "section_break_cbyx",
+  "punctuality",
+  "politeness",
+  "cooperation_with_others",
+  "helping_others",
+  "health",
+  "attitude_to_school_work",
+  "speaking__handwriting",
+  "column_break_tyon",
+  "neatness",
+  "honesty",
+  "leadership",
+  "emotional_stability",
+  "attentiveness",
+  "perseverance",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_yoxw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_group",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Student Group",
+   "options": "Student Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "basic_student_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Student Information"
+  },
+  {
+   "fieldname": "student_admission_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Student Admission ID"
+  },
+  {
+   "fieldname": "basic_class_information_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Class Information"
+  },
+  {
+   "fieldname": "number_of_students_in_class",
+   "fieldtype": "Int",
+   "label": "Number of Students in Class",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jhoi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_students_in_class_group",
+   "fieldtype": "Int",
+   "label": "Number of Students in Class Group",
+   "read_only": 1
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Data",
+   "label": "Gender",
+   "read_only": 1
+  },
+  {
+   "fieldname": "term_start_date",
+   "fieldtype": "Date",
+   "label": "Term Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "term_end_date",
+   "fieldtype": "Date",
+   "label": "Term End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_fnzx",
+   "fieldtype": "Section Break",
+   "label": "Overall Performance"
+  },
+  {
+   "fieldname": "total_marks_obtained",
+   "fieldtype": "Float",
+   "label": "Total Marks Obtained"
+  },
+  {
+   "fieldname": "column_break_wwze",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_max_marks",
+   "fieldtype": "Float",
+   "label": "Total Max Marks"
+  },
+  {
+   "fieldname": "overall_grade",
+   "fieldtype": "Data",
+   "label": "Overall Grade"
+  },
+  {
+   "fieldname": "class_position",
+   "fieldtype": "Int",
+   "label": "Class Position"
+  },
+  {
+   "fieldname": "class_arm_position",
+   "fieldtype": "Int",
+   "label": "Class Arm Position"
+  },
+  {
+   "fieldname": "administrative__notes_section",
+   "fieldtype": "Section Break",
+   "label": "Comments"
+  },
+  {
+   "fieldname": "date_of_result_issue",
+   "fieldtype": "Date",
+   "label": "Date of Result Issue"
+  },
+  {
+   "fieldname": "comments__notes",
+   "fieldtype": "Small Text",
+   "label": "Comments / Notes"
+  },
+  {
+   "fieldname": "section_break_hfoj",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "subjects",
+   "fieldtype": "Table",
+   "label": "Subjects",
+   "options": "Subject Result"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "assessment_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "label": "Assessment Group",
+   "options": "Assessment Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "term_average",
+   "fieldtype": "Float",
+   "label": "Term Average"
+  },
+  {
+   "fieldname": "result_components_breakdown_section",
+   "fieldtype": "Section Break",
+   "label": "Result Components Breakdown"
+  },
+  {
+   "fieldname": "assessment_components",
+   "fieldtype": "Table",
+   "options": "Assessment Score"
+  },
+  {
+   "fieldname": "program",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Program",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_jkeb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_mkpx",
+   "fieldtype": "Section Break",
+   "label": "Psychomotor Skills"
+  },
+  {
+   "fieldname": "handwriting",
+   "fieldtype": "Select",
+   "label": "Handwriting ",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "verbal_fluency",
+   "fieldtype": "Select",
+   "label": "Verbal Fluency",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "column_break_pflb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "games",
+   "fieldtype": "Select",
+   "label": "Games",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "sport",
+   "fieldtype": "Select",
+   "label": "Sport",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "handling_tools",
+   "fieldtype": "Select",
+   "label": "Handling Tools",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "drawing_and_painting",
+   "fieldtype": "Select",
+   "label": "Drawing And Painting",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "musical_skills",
+   "fieldtype": "Select",
+   "label": "Musical Skills",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "section_break_cbyx",
+   "fieldtype": "Section Break",
+   "label": "Affective Skills"
+  },
+  {
+   "fieldname": "punctuality",
+   "fieldtype": "Select",
+   "label": "Punctuality",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "neatness",
+   "fieldtype": "Select",
+   "label": "Neatness",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "politeness",
+   "fieldtype": "Select",
+   "label": "Politeness",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "honesty",
+   "fieldtype": "Select",
+   "label": "Honesty",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "cooperation_with_others",
+   "fieldtype": "Select",
+   "label": "Cooperation with Others",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "column_break_tyon",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "leadership",
+   "fieldtype": "Select",
+   "label": "Leadership",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "helping_others",
+   "fieldtype": "Select",
+   "label": "Helping Others",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "emotional_stability",
+   "fieldtype": "Select",
+   "label": "Emotional Stability",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "health",
+   "fieldtype": "Select",
+   "label": "Health",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "attentiveness",
+   "fieldtype": "Select",
+   "label": "Attentiveness",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "perseverance",
+   "fieldtype": "Select",
+   "label": "Perseverance ",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "speaking__handwriting",
+   "fieldtype": "Select",
+   "label": "Speaking / Handwriting",
+   "options": "1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "School Term Result",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "class_teacher_comment",
+   "fieldtype": "Small Text",
+   "label": "Class Teacher Comment"
+  },
+  {
+   "fieldname": "head_teacher_comment",
+   "fieldtype": "Small Text",
+   "label": "Head Teacher Comment"
+  },
+  {
+   "fieldname": "attendance_information_section",
+   "fieldtype": "Section Break",
+   "label": "Attendance Information"
+  },
+  {
+   "fieldname": "number_of_times_school_opened",
+   "fieldtype": "Data",
+   "label": "Number of Times School Opened"
+  },
+  {
+   "fieldname": "column_break_lqmp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "number_of_times_absent",
+   "fieldtype": "Data",
+   "label": "Number of Times Absent"
+  },
+  {
+   "fieldname": "number_of_times_present",
+   "fieldtype": "Data",
+   "label": "Number of Times Present"
+  },
+  {
+   "fieldname": "attendance_percentage",
+   "fieldtype": "Float",
+   "label": "Attendance Percentage"
+  },
+  {
+   "fieldname": "attitude_to_school_work",
+   "fieldtype": "Select",
+   "label": "Attitude to school work",
+   "options": "1\n2\n3\n4\n5"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 12:37:29.272444",
+ "modified_by": "t.ajani@rhocom.ng",
+ "module": "Piamtech Frappe Education",
+ "name": "School Term Result",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
