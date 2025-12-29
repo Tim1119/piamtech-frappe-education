@@ -1,0 +1,162 @@
+{
+  "doctype": "DocType",
+  "name": "School Settings",
+  "module": "Piamtech Frappe Education",
+  "custom": 1,
+  "is_single": 1,
+  "fields": [
+    {
+      "fieldname": "assessment_tab",
+      "label": "School Assessment Component",
+      "fieldtype": "Tab Break"
+    },
+    {
+      "fieldname": "assessment_components",
+      "label": "Assessment Components",
+      "fieldtype": "Table",
+      "options": "Assessment Criteria Item",
+      "reqd": 1,
+      "description": "Defines how student scores are computed (CA1, CA2, CA3, Exams, etc.)"
+    },
+    {
+      "fieldname": "primary_school_tab",
+      "label": "Primary School Settings",
+      "fieldtype": "Tab Break"
+    },
+    {
+      "fieldname": "primary_school_logo",
+      "label": "School Logo",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "primary_school_head_role",
+      "label": "School Head Role",
+      "fieldtype": "Select",
+      "options": "Principal\nHeadmaster\nHeadmistress\nProprietor\nProprietress"
+    },
+    {
+      "fieldname": "primary_school_head_name",
+      "label": "School Head Name",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "primary_school_head_signature",
+      "label": "School Head Signature",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "primary_school_stamp",
+      "label": "School Stamp",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "primary_programs",
+      "label": "Programs",
+      "fieldtype": "Table",
+      "options": "Policy Program",
+      "description": "Programs/Classes applicable to Primary School"
+    },
+    {
+      "fieldname": "primary_grade_section",
+      "label": "Overall Performance Grades",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "primary_overall_performance_grades",
+      "label": "Grade Configuration",
+      "fieldtype": "Table",
+      "options": "Overall Performance Grade",
+      "description": "Define grade symbols and score ranges for overall performance"
+    },
+    {
+      "fieldname": "primary_promotion_section",
+      "label": "Promotion Rules",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "primary_promotion_passing_score",
+      "label": "Min Passing Score",
+      "fieldtype": "Int",
+      "default": 40
+    },
+    {
+      "fieldname": "primary_core_subjects",
+      "label": "Mandatory Core Subjects",
+      "fieldtype": "Table",
+      "options": "Core Subject",
+      "description": "Student MUST pass these specific subjects to be promoted"
+    },
+    {
+      "fieldname": "secondary_school_tab",
+      "label": "Secondary School Settings",
+      "fieldtype": "Tab Break"
+    },
+    {
+      "fieldname": "secondary_school_logo",
+      "label": "School Logo",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "secondary_school_head_role",
+      "label": "School Head Role",
+      "fieldtype": "Select",
+      "options": "Principal\nHeadmaster\nHeadmistress\nProprietor\nProprietress"
+    },
+    {
+      "fieldname": "secondary_school_head_name",
+      "label": "School Head Name",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "secondary_school_head_signature",
+      "label": "School Head Signature",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "secondary_school_stamp",
+      "label": "School Stamp",
+      "fieldtype": "Attach Image"
+    },
+    {
+      "fieldname": "secondary_programs",
+      "label": "Programs",
+      "fieldtype": "Table",
+      "options": "Policy Program",
+      "description": "Programs/Classes applicable to Secondary School"
+    },
+    {
+      "fieldname": "secondary_grade_section",
+      "label": "Overall Performance Grades",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_overall_performance_grades",
+      "label": "Grade Configuration",
+      "fieldtype": "Table",
+      "options": "Overall Performance Grade",
+      "description": "Define grade symbols and score ranges for overall performance"
+    },
+    {
+      "fieldname": "secondary_promotion_section",
+      "label": "Promotion Rules",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_promotion_passing_score",
+      "label": "Min Passing Score",
+      "fieldtype": "Int",
+      "default": 40
+    },
+    {
+      "fieldname": "secondary_core_subjects",
+      "label": "Mandatory Core Subjects",
+      "fieldtype": "Table",
+      "options": "Core Subject",
+      "description": "Student MUST pass these specific subjects to be promoted"
+    }
+  ],
+  "permissions": [
+    { "role": "System Manager", "read": 1, "write": 1, "create": 1 },
+    { "role": "Education Manager", "read": 1, "write": 1, "create": 1 }
+  ]
+}

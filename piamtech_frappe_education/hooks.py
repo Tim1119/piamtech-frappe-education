@@ -248,12 +248,24 @@ app_license = "mit"
 # ignore_translatable_strings_from = []
 
 fixtures = [
+    # {
+    #     "doctype": "Custom Field",
+    #     "filters": {
+    #         "module": "Piamtech Frappe Education"
+    #     }
+    # },
+
     {
         "doctype": "Custom Field",
-        "filters": {
-            "module": "Piamtech Frappe Education"
-        }
+        "filters": [
+            ["fieldname", "in", [
+                "religion",
+                "state_of_origin"
+                # add other fields you want to keep
+            ]]
+        ]
     },
+    
     {
         "doctype": "Translation",
         "filters": [
@@ -262,8 +274,9 @@ fixtures = [
     }
 ]
 
+
 doc_events = {
-    "Assessment Plan": {
-        "before_save": "piamtech_frappe_education.api.sync_assessment_plan_with_policy"
+    "Assessment Criteria": {
+        "validate": "piamtech_frappe_education.piamtech_frappe_education.overrides.assessment_criteria.validate_assessment_criteria"
     }
 }
