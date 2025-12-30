@@ -272,6 +272,18 @@
       "print": 1,
       "report": 1,
       "share": 1
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "delete": 0,
+      "email": 0,
+      "export": 1,
+      "print": 1,
+      "report": 1,
+      "share": 0
     }
   ]
 }

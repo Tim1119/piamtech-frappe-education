@@ -280,3 +280,20 @@ doc_events = {
         "validate": "piamtech_frappe_education.piamtech_frappe_education.overrides.assessment_criteria.validate_assessment_criteria"
     }
 }
+
+
+# portal_pages = {
+#     "report": "piamtech_frappe_education.public.js.report"
+# }
+
+# portal_menu_items = [
+#     {
+#         "title": "Report",
+#         "route": "/student-portal/report",
+#         "reference_doctype": "School Term Result",
+#         "role": "Student",
+#         "icon": "BookOpen"
+#     }
+# ]
+
+
