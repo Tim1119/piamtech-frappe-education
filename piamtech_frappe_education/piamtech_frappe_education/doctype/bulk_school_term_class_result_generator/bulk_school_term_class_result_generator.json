@@ -1,0 +1,82 @@
+{
+ "actions": [],
+ "autoname": "format:BULK-RSLT-{academic_year}-{academic_term}-{####}",
+ "creation": "2025-10-15 11:53:33.331696",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assessment_group",
+  "academic_year",
+  "academic_term",
+  "student_group",
+  "date_of_result_issue"
+ ],
+ "fields": [
+  {
+   "fieldname": "assessment_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assessment Group",
+   "options": "Assessment Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_year",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Year",
+   "options": "Academic Year",
+   "reqd": 1
+  },
+  {
+   "fieldname": "academic_term",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Academic Term",
+   "options": "Academic Term",
+   "reqd": 1
+  },
+  {
+   "fieldname": "student_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Class Arm",
+   "options": "Student Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_of_result_issue",
+   "fieldtype": "Date",
+   "label": "Date of Result Issue",
+   "reqd": 1
+  }
+ ],
+ "links": [],
+ "modified": "2025-11-03 08:13:08.671761",
+ "modified_by": "timothyinioluwa@gmail.com",
+ "module": "Piamtech Frappe Education",
+ "name": "Bulk School Term Class Result Generator",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1,
+   "delete": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Academics User",
+   "write": 1,
+   "delete": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
