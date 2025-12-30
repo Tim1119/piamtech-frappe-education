@@ -31,6 +31,11 @@ const routes = [
     component: () => import('@/pages/Reports.vue'),
   },
   {
+    path: '/individual-awards',
+    name: 'Individual Awards',
+    component: () => import('@/pages/IndividualAwards.vue'),
+  },
+  {
     path: '/:catchAll(.*)',
     redirect: '/schedule',
   },

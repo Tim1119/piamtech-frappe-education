@@ -52,6 +52,8 @@ import {
   ArrowLeftToLine,
   BookOpen,
   FileBarChart,
+  Medal,
+  Award
 } from 'lucide-vue-next'
 
 import UserDropdown from './UserDropdown.vue'
@@ -87,6 +89,11 @@ const links = [
     label: 'Reports',
     to: '/reports',
     icon: FileBarChart,
+  },
+  {
+    label: 'Individual Awards',
+    to: '/individual-awards',
+    icon: Award,
   },
   // {
   // 	// TODO: create School Diary Page with card like CRM and from ListView go to Resource Document of each Card

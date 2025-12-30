@@ -1,0 +1,123 @@
+{
+  "doctype": "DocType",
+  "name": "Individual Certificate",
+  "module": "Piamtech Frappe Education",
+  "autoname": "format:CERT-{YYYY}-{certificate_type}-{#####}",
+  "editable_grid": 1,
+  "is_submittable": 1,
+  "field_order": [
+    "certificate_details_section",
+    "certificate_title",
+    "certificate_type",
+    "certificate_date",
+    "awardee",
+    "academic_year",
+    "column_break_1",
+    "certificate_file",
+    "description",
+    "admin_section",
+    "remarks"
+  ],
+  "fields": [
+    {
+      "fieldname": "certificate_details_section",
+      "fieldtype": "Section Break",
+      "label": "Certificate Details",
+      "description": "Award certificates to students for academic achievements, behavioral excellence, sports performance, and co-curricular activities. Each certificate recognizes individual student accomplishments."
+    },
+    {
+      "fieldname": "certificate_title",
+      "fieldtype": "Data",
+      "label": "Certificate Title",
+      "reqd": 1,
+      "description": "e.g., Best Performance in Mathematics, Most Improved Student"
+    },
+    {
+      "fieldname": "certificate_type",
+      "fieldtype": "Select",
+      "label": "Certificate Type",
+      "options": "Academic\nBehavioural\nSports\nCo-curricular\nGeneral",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "certificate_date",
+      "fieldtype": "Date",
+      "label": "Certificate Date",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "awardee",
+      "fieldtype": "Link",
+      "label": "Student (Awardee)",
+      "options": "Student",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "academic_year",
+      "fieldtype": "Link",
+      "label": "Academic Year",
+      "options": "Academic Year",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "certificate_file",
+      "fieldtype": "Attach",
+      "label": "Certificate File (PDF/Image)",
+      "description": "Upload the generated certificate file"
+    },
+    {
+      "fieldname": "description",
+      "fieldtype": "Small Text",
+      "label": "Description/Remarks",
+      "description": "Additional details about the certificate"
+    },
+    {
+      "fieldname": "admin_section",
+      "fieldtype": "Section Break",
+      "label": "Administration"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Internal Remarks"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "amend": 1,
+      "cancel": 1,
+      "report": 1,
+      "export": 1
+    },
+    {
+      "role": "Academics User",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1,
+      "amend": 1,
+      "report": 1,
+      "export": 1
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

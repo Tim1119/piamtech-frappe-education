@@ -87,3 +87,96 @@ def get_student_reports_with_program():
     )
     
     return reports
+
+
+@frappe.whitelist()
+def get_individual_awards():
+    """Return all submitted individual certificates for the current logged-in student"""
+    try:
+        # Get student record from current user
+        student = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
+        if not student:
+            frappe.throw("No student record found for current user")
+
+        awards = frappe.get_all(
+            "Individual Certificate",
+            filters={
+                "awardee": student,
+                "docstatus": 1  # Only submitted certificates
+            },
+            fields=[
+                "name",
+                "certificate_title",
+                "certificate_type",
+                "certificate_date",
+                "description",
+                "academic_year",
+                "certificate_file"
+            ],
+            order_by="certificate_date desc"
+        )
+        return awards
+
+    except Exception as e:
+        frappe.log_error(f"Error in getting individual awards: {str(e)}")
+        frappe.throw(f"Error loading awards: {str(e)}")
+
+
+
+@frappe.whitelist()
+def download_certificate(award_name):
+    """Download certificate file for a submitted Individual Certificate"""
+    try:
+        # Get current student
+        student = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
+        if not student:
+            frappe.throw("No student record found for current user")
+        
+        # Get the certificate
+        certificate = frappe.get_doc("Individual Certificate", award_name)
+        
+        # Verify the current student is the awardee
+        if certificate.awardee != student:
+            frappe.throw("You don't have permission to download this certificate")
+        
+        # Verify it's submitted
+        if certificate.docstatus != 1:
+            frappe.throw("This certificate has not been issued yet")
+        
+        # Get the file
+        if not certificate.certificate_file:
+            frappe.throw("No certificate file attached")
+        
+        # Return the file URL
+        return {
+            "file_url": certificate.certificate_file,
+            "file_name": certificate.certificate_file.split('/')[-1]
+        }
+        
+    except Exception as e:
+        frappe.log_error(f"Error downloading certificate {award_name}: {str(e)}")
+        frappe.throw(f"Error downloading certificate: {str(e)}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
