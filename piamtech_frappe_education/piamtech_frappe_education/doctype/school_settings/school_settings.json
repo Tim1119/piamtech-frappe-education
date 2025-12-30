@@ -4,6 +4,7 @@
   "module": "Piamtech Frappe Education",
   "custom": 1,
   "is_single": 1,
+  "issingle": 1,
   "fields": [
     {
       "fieldname": "assessment_tab",
@@ -22,11 +23,6 @@
       "fieldname": "primary_school_tab",
       "label": "Primary School Settings",
       "fieldtype": "Tab Break"
-    },
-    {
-      "fieldname": "primary_school_logo",
-      "label": "School Logo",
-      "fieldtype": "Attach Image"
     },
     {
       "fieldname": "primary_school_head_role",
@@ -69,6 +65,30 @@
       "description": "Define grade symbols and score ranges for overall performance"
     },
     {
+      "fieldname": "primary_psychomotor_skills_section",
+      "label": "Psychomotor Skills",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "primary_psychomotor_skills",
+      "label": "Skills to Assess",
+      "fieldtype": "Table",
+      "options": "Skill Definition",
+      "description": "Define psychomotor skills to be assessed (Handwriting, Games, Sports, etc.)"
+    },
+    {
+      "fieldname": "primary_affective_skills_section",
+      "label": "Affective Skills",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "primary_affective_skills",
+      "label": "Skills to Assess",
+      "fieldtype": "Table",
+      "options": "Skill Definition",
+      "description": "Define affective skills to be assessed (Punctuality, Honesty, Leadership, etc.)"
+    },
+    {
       "fieldname": "primary_promotion_section",
       "label": "Promotion Rules",
       "fieldtype": "Section Break"
@@ -90,11 +110,6 @@
       "fieldname": "secondary_school_tab",
       "label": "Secondary School Settings",
       "fieldtype": "Tab Break"
-    },
-    {
-      "fieldname": "secondary_school_logo",
-      "label": "School Logo",
-      "fieldtype": "Attach Image"
     },
     {
       "fieldname": "secondary_school_head_role",
@@ -135,6 +150,30 @@
       "fieldtype": "Table",
       "options": "Overall Performance Grade",
       "description": "Define grade symbols and score ranges for overall performance"
+    },
+    {
+      "fieldname": "secondary_psychomotor_skills_section",
+      "label": "Psychomotor Skills",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_psychomotor_skills",
+      "label": "Skills to Assess",
+      "fieldtype": "Table",
+      "options": "Skill Definition",
+      "description": "Define psychomotor skills to be assessed (Handwriting, Games, Sports, etc.)"
+    },
+    {
+      "fieldname": "secondary_affective_skills_section",
+      "label": "Affective Skills",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_affective_skills",
+      "label": "Skills to Assess",
+      "fieldtype": "Table",
+      "options": "Skill Definition",
+      "description": "Define affective skills to be assessed (Punctuality, Honesty, Leadership, etc.)"
     },
     {
       "fieldname": "secondary_promotion_section",

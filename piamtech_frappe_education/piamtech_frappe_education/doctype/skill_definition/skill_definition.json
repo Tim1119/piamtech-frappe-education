@@ -1,0 +1,16 @@
+{
+  "doctype": "DocType",
+  "name": "Skill Definition",
+  "module": "Piamtech Frappe Education",
+  "istable": 1,
+  "editable_grid": 1,
+  "fields": [
+    {
+      "fieldname": "skill_name",
+      "label": "Skill Name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "reqd": 1
+    }
+  ]
+}
