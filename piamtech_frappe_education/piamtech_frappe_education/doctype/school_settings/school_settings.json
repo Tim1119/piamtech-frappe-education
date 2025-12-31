@@ -58,6 +58,13 @@
       "fieldtype": "Section Break"
     },
     {
+      "fieldname": "primary_school_print_format",
+      "label": "School Report Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for school term reports"
+    },
+    {
       "fieldname": "primary_school_fees_bill_format",
       "label": "School Fees Bill Print Format",
       "fieldtype": "Link",
@@ -162,6 +169,13 @@
       "fieldname": "secondary_print_formats_section",
       "label": "Print Formats",
       "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_school_print_format",
+      "label": "School Report Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for school term reports"
     },
     {
       "fieldname": "secondary_school_fees_bill_format",
