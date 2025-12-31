@@ -53,6 +53,25 @@
       "description": "Programs/Classes applicable to Primary School"
     },
     {
+      "fieldname": "primary_print_formats_section",
+      "label": "Print Formats",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "primary_school_fees_bill_format",
+      "label": "School Fees Bill Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for school fees invoice/bill"
+    },
+    {
+      "fieldname": "primary_school_fees_receipt_format",
+      "label": "School Fees Receipt Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for payment receipt with history"
+    },
+    {
       "fieldname": "primary_grade_section",
       "label": "Overall Performance Grades",
       "fieldtype": "Section Break"
@@ -138,6 +157,25 @@
       "fieldtype": "Table",
       "options": "Policy Program",
       "description": "Programs/Classes applicable to Secondary School"
+    },
+    {
+      "fieldname": "secondary_print_formats_section",
+      "label": "Print Formats",
+      "fieldtype": "Section Break"
+    },
+    {
+      "fieldname": "secondary_school_fees_bill_format",
+      "label": "School Fees Bill Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for school fees invoice/bill"
+    },
+    {
+      "fieldname": "secondary_school_fees_receipt_format",
+      "label": "School Fees Receipt Print Format",
+      "fieldtype": "Link",
+      "options": "Print Format",
+      "description": "Print format for payment receipt with history"
     },
     {
       "fieldname": "secondary_grade_section",

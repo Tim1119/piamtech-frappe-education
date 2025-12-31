@@ -1,16 +1,28 @@
 """
-School Settings API
-Provides utility functions for school configuration and print formats
+School Portal API
+Provides utility functions for student portal operations including:
+- Student fees/invoices management
+- Payment history tracking
+- Print format configuration
+- Report generation
+- Certificate management
 """
 
 import frappe
+from frappe import _
 
+
+# ============================================================================
+# SCHOOL SETTINGS & CONFIGURATION
+# ============================================================================
 
 @frappe.whitelist()
 def get_school_print_format():
     """
     Get the configured print format from School Settings
     Returns both primary and secondary print formats
+    
+    Used for: Reports, certificates, documents
     """
     try:
         settings = frappe.get_doc('School Settings')
@@ -26,16 +38,20 @@ def get_school_print_format():
         }
 
 
-def get_print_format_for_program(program):
+@frappe.whitelist()
+def get_print_format_for_program(program, format_type="report"):
     """
     Get the appropriate print format based on program type
     Checks if program is in primary or secondary programs in School Settings
     
     Args:
         program: Program name (e.g., "JSS One", "Basic One")
+        format_type: Type of format - "report", "bill", "receipt"
     
     Returns:
         Print format name (e.g., "Primary School Result", "Secondary School Result")
+    
+    Used by: Result reports, certificates, fee documents
     """
     try:
         settings = frappe.get_doc('School Settings')
@@ -45,21 +61,49 @@ def get_print_format_for_program(program):
         secondary_programs = [p.program for p in (settings.secondary_programs or [])]
         
         if program in primary_programs:
-            print_format = settings.primary_school_print_format or "Standard"
+            if format_type == "report":
+                return settings.primary_school_print_format or "Standard"
+            elif format_type == "bill":
+                return settings.primary_school_fees_bill_format or "Standard"
+            elif format_type == "receipt":
+                return settings.primary_school_fees_receipt_format or "Standard"
         elif program in secondary_programs:
-            print_format = settings.secondary_school_print_format or "Standard"
-        else:
-            print_format = "Standard"
+            if format_type == "report":
+                return settings.secondary_school_print_format or "Standard"
+            elif format_type == "bill":
+                return settings.secondary_school_fees_bill_format or "Standard"
+            elif format_type == "receipt":
+                return settings.secondary_school_fees_receipt_format or "Standard"
         
-        return print_format
+        return "Standard"
     except Exception as e:
         frappe.log_error(f"Error getting print format for program {program}: {str(e)}")
         return "Standard"
 
 
 @frappe.whitelist()
+def get_print_format_for_program_whitelist(program, format_type="report"):
+    """
+    Whitelist wrapper for get_print_format_for_program
+    Makes the function callable from frontend
+    """
+    return get_print_format_for_program(program, format_type)
+
+
+# ============================================================================
+# STUDENT REPORTS & RESULTS
+# ============================================================================
+
+@frappe.whitelist()
 def get_student_reports_with_program():
-    """Get all School Term Results for the current student"""
+    """
+    Get all School Term Results for the current student
+    
+    Returns:
+        List of school term results with academic year, term, grades, etc.
+    
+    Used by: Reports/Results page
+    """
     
     # Get current user's student record
     student_id = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
@@ -89,9 +133,20 @@ def get_student_reports_with_program():
     return reports
 
 
+# ============================================================================
+# CERTIFICATES & AWARDS
+# ============================================================================
+
 @frappe.whitelist()
 def get_individual_awards():
-    """Return all submitted individual certificates for the current logged-in student"""
+    """
+    Return all submitted individual certificates for the current logged-in student
+    
+    Returns:
+        List of certificates with title, type, date, etc.
+    
+    Used by: Awards/Certificates page
+    """
     try:
         # Get student record from current user
         student = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
@@ -122,10 +177,19 @@ def get_individual_awards():
         frappe.throw(f"Error loading awards: {str(e)}")
 
 
-
 @frappe.whitelist()
 def download_certificate(award_name):
-    """Download certificate file for a submitted Individual Certificate"""
+    """
+    Download certificate file for a submitted Individual Certificate
+    
+    Args:
+        award_name: Name of the Individual Certificate document
+    
+    Returns:
+        dict: {"file_url": "...", "file_name": "..."}
+    
+    Used by: Awards/Certificates page
+    """
     try:
         # Get current student
         student = frappe.db.get_value("Student", {"user": frappe.session.user}, "name")
@@ -158,7 +222,9 @@ def download_certificate(award_name):
         frappe.throw(f"Error downloading certificate: {str(e)}")
 
 
-
+# ============================================================================
+# STUDENT FEES & INVOICES
+# ============================================================================
 
 @frappe.whitelist()
 def get_student_fees(student=None):
@@ -170,6 +236,8 @@ def get_student_fees(student=None):
     
     Returns:
         dict: {"fees": [list of fee documents]}
+    
+    Used by: Legacy fees tracking (if applicable)
     """
     try:
         # If student not provided, get from current user
@@ -214,10 +282,30 @@ def get_student_invoices_with_details(student=None):
     Get student invoices with complete payment breakdown
     Calculates from actual Payment Entry data
     
+    Args:
+        student (str): Student ID (optional, uses current user's student if not provided)
+    
+    Returns:
+        dict: {
+            "invoices": [
+                {
+                    "invoice": "ACC-SINV-2025-00001",
+                    "status": "Paid",
+                    "original_amount": 100000,
+                    "total_paid": 100000,
+                    "outstanding_amount": 0,
+                    "payment_history": [...]
+                }
+            ],
+            "print_format": "Standard"
+        }
+    
     Structure:
     - Original Amount: Sales Invoice grand_total
     - Total Paid: Sum of all Payment Entry allocated_amount for this invoice
-    - Outstanding: Sum of Payment Entry outstanding_amount from latest payment
+    - Outstanding: original_amount - total_paid
+    
+    Used by: Fees/Invoices page
     """
     try:
         if not student:
@@ -298,23 +386,6 @@ def get_student_invoices_with_details(student=None):
                     "payment_history": payment_history,
                 }
                 
-                # LOG THE VALUES
-                frappe.log_error(f"""
-INVOICE CALCULATION FOR: {invoice_name}
-================================================================================
-Original Amount (grand_total): {original_amount}
-Total Paid (sum of allocated): {total_paid}
-Outstanding (original - paid): {outstanding_amount}
-Max Outstanding: {max(outstanding_amount, 0)}
-
-Payment History:
-{payment_history}
-
-Enhanced Invoice Dict:
-{enhanced_invoice}
-================================================================================
-""", "FEE CALCULATION DEBUG")
-                
                 enhanced_invoices.append(enhanced_invoice)
             
             except Exception as e:
@@ -329,6 +400,118 @@ Enhanced Invoice Dict:
     except Exception as e:
         frappe.log_error(f"Error getting student invoices with details: {str(e)}")
         frappe.throw(_("Error loading fees. Please try again."))
+    
+    finally:
+        # Ensure we always restore the original user
+        try:
+            frappe.set_user(current_user)
+        except Exception:
+            pass
+
+
+# ============================================================================
+# FEES PRINT FORMATS & DOWNLOADS
+# ============================================================================
+
+@frappe.whitelist()
+@frappe.whitelist()
+def get_print_format_for_fees(program, format_type="bill"):
+    """
+    Get the appropriate print format for school fees based on program
+    
+    Args:
+        program: Student's program name (e.g., "Basic One", "JSS One")
+        format_type: "bill" or "receipt"
+    
+    Returns:
+        str: Print format name to use
+    
+    Used by: Fees page (Bill/Receipt download buttons)
+    
+    Logic:
+        1. Check if program is in primary_programs
+        2. If yes, return primary_school_fees_bill/receipt_format
+        3. If no, check secondary_programs
+        4. If yes, return secondary_school_fees_bill/receipt_format
+        5. Otherwise return "Standard"
+    """
+    return get_print_format_for_program(program, format_type)
+
+
+@frappe.whitelist()
+@frappe.whitelist()
+def get_invoice_payment_history(invoice_name):
+    """
+    Get complete payment history for an invoice
+    
+    Args:
+        invoice_name: Sales Invoice name
+    
+    Returns:
+        dict: {
+            "invoice": "ACC-SINV-2025-00001",
+            "student": "STU-001",
+            "program": "Basic One",
+            "total_amount": 100000,
+            "total_paid": 100000,
+            "outstanding": 0,
+            "payments": [
+                {
+                    "payment_entry": "ACC-PAY-2025-00001",
+                    "date": "2025-12-25",
+                    "amount": 100000,
+                    "reference": "TXN123456"
+                }
+            ]
+        }
+    
+    Used by: Receipt print format (to show payment history)
+    """
+    try:
+        invoice = frappe.get_doc("Sales Invoice", invoice_name)
+        
+        # Store current user
+        current_user = frappe.session.user
+        
+        # Use Administrator context to query Payment Entries
+        frappe.set_user("Administrator")
+        
+        payment_entries = frappe.db.get_list(
+            "Payment Entry",
+            filters={"docstatus": 1},
+            fields=["name", "paid_amount", "posting_date", "reference_no"],
+            limit_page_length=None
+        )
+        
+        # Switch back to current user
+        frappe.set_user(current_user)
+        
+        # Filter for payments referencing this invoice
+        invoice_payments = []
+        for pe in payment_entries:
+            doc = frappe.get_doc("Payment Entry", pe["name"])
+            for ref in doc.references:
+                if ref.reference_name == invoice_name:
+                    invoice_payments.append({
+                        "payment_entry": pe["name"],
+                        "date": pe["posting_date"],
+                        "amount": ref.allocated_amount,
+                        "reference": pe["reference_no"]
+                    })
+        
+        return {
+            "invoice": invoice_name,
+            "student": invoice.student if hasattr(invoice, 'student') else None,
+            "program": invoice.program if hasattr(invoice, 'program') else None,
+            "total_amount": invoice.grand_total,
+            "total_paid": sum(p["amount"] for p in invoice_payments),
+            "outstanding": invoice.outstanding_amount,
+            "payments": invoice_payments
+        }
+    
+    except Exception as e:
+        frappe.log_error(f"Error getting payment history: {str(e)}")
+        return {}
     
     finally:
         # Ensure we always restore the original user

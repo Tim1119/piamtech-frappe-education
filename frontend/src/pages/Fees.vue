@@ -92,25 +92,43 @@
                 {{ item === '-' ? 'N/A' : formatDate(item) }}
               </span>
 
-              <!-- Actions -->
-              <div v-else-if="column.key === 'cta'" class="flex gap-2">
+              <!-- Download Bill Column -->
+              <div v-else-if="column.key === 'download_bill'" class="flex justify-center">
                 <Button
-                  v-if="row.status === 'Paid'"
-                  @click="downloadInvoice(row)"
+                  @click="downloadBill(row)"
                   variant="outline"
                   size="sm"
                   icon-left="download"
-                  label="Download"
+                  label="Bill"
+                  title="Download invoice to see what you're paying for"
                 />
+              </div>
 
+              <!-- Download Receipt Column -->
+              <div v-else-if="column.key === 'download_receipt'" class="flex justify-center">
                 <Button
-                  v-else
+                  v-if="row.status === 'Paid' || row.status === 'Partly Paid'"
+                  @click="downloadReceipt(row)"
+                  variant="outline"
+                  size="sm"
+                  icon-left="file-text"
+                  label="Receipt"
+                  title="Download payment receipt with payment history"
+                />
+                <span v-else class="text-gray-400 text-xs">Not available</span>
+              </div>
+
+              <!-- Pay Now Column -->
+              <div v-else-if="column.key === 'pay_now'" class="flex justify-center">
+                <Button
+                  v-if="row.status !== 'Paid'"
                   @click="openPaymentDialog(row)"
                   variant="solid"
                   size="sm"
                   icon-left="credit-card"
                   label="Pay Now"
                 />
+                <span v-else class="text-green-600 text-xs font-semibold">✓ Paid</span>
               </div>
             </ListRowItem>
           </ListRow>
@@ -172,7 +190,7 @@ onMounted(() => {
     setTimeout(() => {
       invoicesResource.reload()
       // Clean up URL
-      window.history.replaceState({}, document.title, '/app/student-portal/fees')
+      window.history.replaceState({}, document.title, '/student-portal/fees')
     }, 1000)
   }
   
@@ -192,7 +210,7 @@ onMounted(() => {
       iconClasses: 'text-red-600',
     })
     // Clean up URL
-    window.history.replaceState({}, document.title, '/app/student-portal/fees')
+    window.history.replaceState({}, document.title, '/student-portal/fees')
   }
 })
 
@@ -277,8 +295,18 @@ const tableData = reactive({
       width: 1,
     },
     {
-      label: 'Action',
-      key: 'cta',
+      label: 'Download Bill',
+      key: 'download_bill',
+      width: 1,
+    },
+    {
+      label: 'Download Receipt',
+      key: 'download_receipt',
+      width: 1,
+    },
+    {
+      label: 'Pay Now',
+      key: 'pay_now',
       width: 1,
     },
   ],
@@ -323,13 +351,48 @@ const getOutstandingColor = (amount) => {
   return 'text-gray-700'
 }
 
-const downloadInvoice = (row) => {
-  const url = `/api/method/frappe.utils.print_format.download_pdf?` +
-    `doctype=${encodeURIComponent('Sales Invoice')}` +
-    `&name=${encodeURIComponent(row.invoice)}` +
-    `&format=${encodeURIComponent(printFormat.value)}`
-  
-  window.open(url, '_blank')
+const downloadBill = async (row) => {
+  try {
+    // Get the print format from School Settings based on program
+    const formatName = await call('piamtech_frappe_education.school_portal_api.get_print_format_for_fees', {
+      program: row.program,
+      format_type: 'bill'
+    })
+    
+    // Use /printview endpoint like the reports page
+    const printUrl = `/printview?doctype=Sales%20Invoice&name=${encodeURIComponent(row.invoice)}&format=${encodeURIComponent(formatName)}&no_letterhead=1`
+    
+    window.open(printUrl, '_blank')
+  } catch (error) {
+    createToast({
+      title: 'Error',
+      description: 'Failed to open bill',
+      icon: 'x',
+      iconClasses: 'text-red-600',
+    })
+  }
+}
+
+const downloadReceipt = async (row) => {
+  try {
+    // Get the print format from School Settings based on program
+    const formatName = await call('piamtech_frappe_education.school_portal_api.get_print_format_for_fees', {
+      program: row.program,
+      format_type: 'receipt'
+    })
+    
+    // Use /printview endpoint like the reports page
+    const printUrl = `/printview?doctype=Sales%20Invoice&name=${encodeURIComponent(row.invoice)}&format=${encodeURIComponent(formatName)}&no_letterhead=1`
+    
+    window.open(printUrl, '_blank')
+  } catch (error) {
+    createToast({
+      title: 'Error',
+      description: 'Failed to open receipt',
+      icon: 'x',
+      iconClasses: 'text-red-600',
+    })
+  }
 }
 
 const openPaymentDialog = (row) => {
