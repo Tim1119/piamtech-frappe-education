@@ -281,6 +281,8 @@ doc_events = {
     }
 }
 
+allowed_hosts = ["0d8c199ff432.ngrok-free.app", "*.ngrok-free.app", "localhost", "127.0.0.1"]
+
 
 # portal_pages = {
 #     "report": "piamtech_frappe_education.public.js.report"

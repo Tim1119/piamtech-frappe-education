@@ -192,6 +192,53 @@
       "fieldtype": "Table",
       "options": "Core Subject",
       "description": "Student MUST pass these specific subjects to be promoted"
+    },
+    {
+      "fieldname": "paystack_settings_tab",
+      "label": "Paystack Payment Gateway",
+      "fieldtype": "Tab Break"
+    },
+    {
+      "fieldname": "paystack_enabled",
+      "fieldtype": "Check",
+      "label": "Enable Paystack",
+      "default": 0
+    },
+    {
+      "fieldname": "paystack_live_mode",
+      "fieldtype": "Check",
+      "label": "Live Mode",
+      "default": 0,
+      "description": "Uncheck for Test Mode, Check for Live Mode"
+    },
+    {
+      "fieldname": "paystack_api_section",
+      "fieldtype": "Section Break",
+      "label": "API Credentials"
+    },
+    {
+      "fieldname": "paystack_test_secret_key",
+      "fieldtype": "Password",
+      "label": "Test Secret Key"
+    },
+    {
+      "fieldname": "paystack_test_public_key",
+      "fieldtype": "Data",
+      "label": "Test Public Key"
+    },
+    {
+      "fieldname": "paystack_column_break",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "paystack_live_secret_key",
+      "fieldtype": "Password",
+      "label": "Live Secret Key"
+    },
+    {
+      "fieldname": "paystack_live_public_key",
+      "fieldtype": "Data",
+      "label": "Live Public Key"
     }
   ],
   "permissions": [

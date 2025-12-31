@@ -1,0 +1,128 @@
+{
+  "doctype": "DocType",
+  "name": "Batch Payment",
+  "module": "Piamtech Frappe Education",
+  "autoname": "format:BATCH-PAY-{YYYY}-{#####}",
+  "editable_grid": 1,
+  "is_submittable": 1,
+  "fields": [
+    {
+      "fieldname": "payment_details_section",
+      "fieldtype": "Section Break",
+      "label": "Payment Details"
+    },
+    {
+      "fieldname": "student",
+      "fieldtype": "Link",
+      "label": "Student",
+      "options": "Student",
+      "reqd": 1,
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "student_name",
+      "fieldtype": "Data",
+      "label": "Student Name",
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_1",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "sales_invoice",
+      "fieldtype": "Link",
+      "label": "Sales Invoice",
+      "options": "Sales Invoice",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "invoice_amount",
+      "fieldtype": "Currency",
+      "label": "Invoice Total Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "amount_paid_section",
+      "fieldtype": "Section Break",
+      "label": "Payment Information"
+    },
+    {
+      "fieldname": "payment_amount",
+      "fieldtype": "Currency",
+      "label": "Payment Amount",
+      "reqd": 1,
+      "description": "Amount to pay in this batch",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "payment_date",
+      "fieldtype": "Date",
+      "label": "Payment Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "payment_reference",
+      "fieldtype": "Data",
+      "label": "Paystack Reference",
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Pending\nProcessing\nCompleted\nFailed",
+      "default": "Pending",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "remarks_section",
+      "fieldtype": "Section Break",
+      "label": "Additional Information"
+    },
+    {
+      "fieldname": "remarks",
+      "fieldtype": "Small Text",
+      "label": "Remarks",
+      "description": "e.g., 1st installment, partial payment, etc."
+    },
+    {
+      "fieldname": "amount_remaining",
+      "fieldtype": "Currency",
+      "label": "Amount Remaining",
+      "read_only": 1,
+      "description": "Outstanding amount after this payment"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1,
+      "submit": 1,
+      "amend": 1,
+      "cancel": 1
+    },
+    {
+      "role": "Education Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "submit": 1
+    },
+    {
+      "role": "Student",
+      "read": 1,
+      "create": 1
+    }
+  ]
+}
